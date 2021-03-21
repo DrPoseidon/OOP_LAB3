@@ -6,21 +6,23 @@ const rl = readline.createInterface({
 });
 class Context {
   constructor(type, str) {
-    this.type = type;
-    this.str = str;
+    this.good = "*** good ***";
+    this.bad = "*** bad ***";
   }
   interact(validate) {
     if (validate) {
-      console.log("*** good ***");
+      console.log(this.good);
     } else {
-      console.log("*** bad ***");
+      console.log(this.bad);
     }
   }
 }
 
 class Strategy extends Context {
   constructor(type, str) {
-    super(type, str);
+    super();
+    this.type = type;
+    this.str = str;
   }
   validate() {
     let valid = 1;
