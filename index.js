@@ -5,22 +5,19 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 class Context {
-  constructor(type, str) {
-    this.good = "*** good ***";
-    this.bad = "*** bad ***";
-  }
-  interact(validate) {
+  static good = "*** good ***";
+  static bad = "*** bad ***";
+  static interact(validate) {
     if (validate) {
-      console.log(this.good);
+      console.log(Context.good);
     } else {
-      console.log(this.bad);
+      console.log(Context.bad);
     }
   }
 }
 
-class Strategy extends Context {
+class Strategy {
   constructor(type, str) {
-    super();
     this.type = type;
     this.str = str;
   }
@@ -45,7 +42,7 @@ class Strategy extends Context {
     } else {
       valid = 0;
     }
-    super.interact(valid);
+    Context.interact(valid);
   }
 }
 
