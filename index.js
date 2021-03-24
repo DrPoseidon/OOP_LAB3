@@ -26,23 +26,39 @@ class Strategy {
     if (this.type === "n" && !isNaN(this.str)) {
       valid = 1;
     } else if (this.type === "u" && isNaN(this.str)) {
-      for (let i = 0; i < this.str.length - 1; i++) {
-        if (this.str[i] !== this.str[i].toUpperCase()) {
-          valid = 0;
-          break;
-        }
-      }
+valid = Upper.method(this.str)
     } else if (this.type === "l" && isNaN(this.str)) {
-      for (let i = 0; i < this.str.length - 1; i++) {
-        if (this.str[i] !== this.str[i].toLowerCase()) {
-          valid = 0;
-          break;
-        }
-      }
+valid = Lower.method(this.str)
     } else {
       valid = 0;
     }
     Context.interact(valid);
+  }
+}
+
+class Upper{
+  static method(str){
+    let valid = 1;
+          for (let i = 0; i < str.length - 1; i++) {
+        if (str[i] !== str[i].toUpperCase()) {
+          valid = 0;
+          break;
+        }
+      }
+    return valid;
+  }
+}
+
+class Lower{
+  static method(str){
+    let valid = 1
+          for (let i = 0; i < str.length - 1; i++) {
+        if (str[i] !== str[i].toLowerCase()) {
+          valid = 0;
+          break;
+        }
+      }
+    return valid;
   }
 }
 
@@ -52,15 +68,3 @@ rl.question("Input type (n)umber, (u)pper, (l)ower: ", (type) => {
     rl.close();
   });
 });
-
-// new Strategy("u", "123").validate();
-// new Strategy("l", "123").validate();
-// new Strategy("n", "123").validate(); // good
-
-// new Strategy("u", "asdf").validate();
-// new Strategy("l", "asdf").validate(); // good
-// new Strategy("n", "asdf").validate();
-
-// new Strategy("u", "ASDF").validate(); // good
-// new Strategy("l", "ASDF").validate();
-// new Strategy("n", "ASDF").validate();
